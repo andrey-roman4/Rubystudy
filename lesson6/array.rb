@@ -1,12 +1,12 @@
-fruits = ["apple", "orange", "banana"]
-puts "Массив: " + fruits.to_s
+fruits = %w[apple orange banana]
+puts "Массив: #{fruits}"
 basket = []
-basket << "Apple"
-basket.push("Mellon")
-basket.push("Cherry", "Mango")
-puts "Корзина: " + basket.to_s
+basket << 'Apple'
+basket.push('Mellon')
+basket.push('Cherry', 'Mango')
+puts "Корзина: #{basket}"
 puts basket[3]
-basket.delete("Mellon")
+basket.delete('Mellon')
 puts basket.to_s
 basket.delete_at(0)
 puts basket.to_s
