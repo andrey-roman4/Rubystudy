@@ -6,7 +6,7 @@ sum_digits = 0
 while count <= number_digits
   array_digits << count
   sum_digits += count
-  count +=1
+  count += 1
 end
 puts array_digits.to_s
 puts sum_digits
