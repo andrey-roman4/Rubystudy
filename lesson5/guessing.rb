@@ -1,52 +1,25 @@
-number = rand(1..15)
-puts number.to_s
-puts 'Загадано число от 1 до 15, отгадайте какое?'
-
-attempt1 = gets.to_i
-if (attempt1 < number && number - attempt1 <= 2 )
-  puts 'Тепло (нужно больше)' + number.to_s
-else
-  if (attempt1 < number && number - attempt1 > 2 )
-    puts 'Холодно (нужно больше)' + number.to_s
-  else
-    if (attempt1 > number && attempt1 - number <= 2 )
-      puts 'Тепло (нужно меньше)' + number.to_s
-    else
-      if (attempt1 > number && attempt1 - number > 2 )
-        puts 'Холодно (нужно меньше)' + number.to_s
-      else
-        if (attempt1 == number)
-          abort 'Ура, вы выиграли!'
-        end
-      end
-    end
+guessed_number = rand(1..15)
+puts guessed_number.to_s
+puts 'Загадано число от 1 до 15. У вас три попытки, отгадайте какое?'
+count = 0
+while count < 3
+  my_guessed = gets.to_i
+  if my_guessed == guessed_number
+    abort 'Ура, вы выиграли!'
   end
-end
-
-attempt2 = gets.to_i
-if (attempt2 < number && number - attempt2 <= 2 )
-  puts 'Тепло (нужно больше)' + number.to_s
-else
-  if (attempt2 < number && number - attempt2 > 2 )
-    puts 'Холодно (нужно больше)' + number.to_s
-  else
-    if (attempt2 > number && attempt2 - number <= 2 )
-      puts 'Тепло (нужно меньше)' + number.to_s
-    else
-      if (attempt2 > number && attempt2 - number > 2 )
-        puts 'Холодно (нужно меньше)' + number.to_s
-      else
-        if (attempt2 == number)
-          abort 'Ура, вы выиграли!'
-        end
-      end
-    end
+  guessing_directions = if my_guessed > guessed_number && count < 2
+                          '(нужно меньше)'
+                        elsif my_guessed < guessed_number && count < 2
+                          '(нужно больше)'
+                        end
+  proximity_to_guessed_number = if (my_guessed - guessed_number).abs <= 2 && count < 2
+                                  'Тепло'
+                                elsif (my_guessed - guessed_number).abs > 2 && count < 2
+                                  'Холодно'
+                                end
+  if count < 2
+  puts "#{proximity_to_guessed_number} #{guessing_directions}"
   end
+  count += 1
 end
-
-attempt3 = gets.to_i
-if attempt3 == number
-  abort 'Ура, вы выиграли!'
-else
-  puts 'Загаданное число равно ' + number.to_s
-end
+puts "Вы проиграли! Загаданное число равно #{guessed_number}"
